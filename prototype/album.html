@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+
+    </style>
+</head>
+<body style="background-color: #170f23">
+<div class="container-fluid" style="color: #6040ab">
+    <div class="row">
+        <div class="col-2 bg-light-subtle min-vh-100 position-fixed z-3">
+            <div class="d-flex flex-column gap-5 align-items-start h-100">
+                <img class="w-100 m-0 p-0" src="img/Sound%20Hub%20(1).png" alt="">
+                <div class="">
+                    <div class="h3"><i class="fa-solid fa-house" style="color: #6040ab;"></i> Trang chủ</div>
+                </div>
+                <div class="">
+                    <div class="h3"><i class="fa-solid fa-hashtag" style="color: #6040ab;"></i> Thể loại</div>
+                </div>
+                <div class="">
+                    <div class="h3"><i class="fa-solid fa-square-plus" style="color: #6040ab;"></i> Tạo album</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-10 p-0 m-0">
+            <nav class="navbar sticky-top" style="background-color: #170f23;">
+                <div class="row w-100">
+                    <div class="col-10">
+                        <div class="position-relative d-flex w-75 float-end">
+                            <i class="fa-solid fa-magnifying-glass position-absolute"
+                               style="color: #6040ab;top: 10px; left: 10px"></i>
+                            <input type="text" maxlength="85" class="form-control w-100" style="text-indent: 25px"
+                                   placeholder="Tìm tên bài hát">
+                        </div>
+                    </div>
+                    <div class="col-2 rounded-circle position-relative">
+                        <img class="float-end position-relative" style="width: 2rem;height: 2rem; top: 20%"
+                             src="img/image-modified.png"/>
+                    </div>
+                </div>
+            </nav>
+            <div class="container-fluid p-5">
+
+                <div class="card mt-4">
+                    <div class="card-header">List album</div>
+                    <div class="card-body">
+                        <audio controls class="w-100">
+                            <source
+                                    src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3"
+                                    type="audio/mpeg"
+                            />
+                        </audio>
+                        <audio controls class="w-100">
+                            <source
+                                    src="source/VeQue-SaxophoneTranManhTuan_34skh.mp3"
+                                    type="audio/mpeg"
+                            />
+                        </audio>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
