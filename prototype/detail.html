@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        html,
+        body,
+        .view {
+            height: 100%;
+        }
+
+        #mobile-box {
+            width: 360px;
+        }
+
+        .card {
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+        .card .view {
+            -webkit-border-top-left-radius: 10px;
+            border-top-left-radius: 10px;
+            -webkit-border-top-right-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .card h5 a {
+            color: #0d47a1;
+        }
+
+        .card h5 a:hover {
+            color: #072f6b;
+        }
+
+        #pButton {
+            float: left;
+        }
+
+        #timeline {
+            width: 90%;
+            height: 2px;
+            margin-top: 20px;
+            margin-left: 10px;
+            float: left;
+            -webkit-border-radius: 15px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        #pButton {
+            margin-top: 12px;
+            cursor: pointer;
+        }
+
+        #playhead {
+            width: 8px;
+            height: 8px;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            margin-top: -3px;
+            background: black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="background-color: #170f23">
+<div class="container-fluid" style="color: #6040ab">
+    <div class="row">
+        <div class="col-2 bg-light-subtle min-vh-100 position-fixed z-3">
+            <div class="d-flex flex-column gap-5 align-items-start h-100">
+                <img class="w-100 m-0 p-0" src="img/Sound%20Hub%20(1).png" alt="">
+                <div class="">
+                    <div class="h3"><i class="fa-solid fa-house" style="color: #6040ab;"></i> Trang chủ</div>
+                </div>
+                <div class="">
+                    <div class="h3"><i class="fa-solid fa-hashtag" style="color: #6040ab;"></i> Thể loại</div>
+                </div>
+                <div class="">
+                    <div class="h3"><i class="fa-solid fa-square-plus" style="color: #6040ab;"></i> Tạo album</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-10 p-0 m-0">
+            <nav class="navbar sticky-top" style="background-color: #170f23;">
+                <div class="row w-100">
+                    <div class="col-10">
+                        <div class="position-relative d-flex w-75 float-end">
+                            <i class="fa-solid fa-magnifying-glass position-absolute"
+                               style="color: #6040ab;top: 10px; left: 10px"></i>
+                            <input type="text" maxlength="85" class="form-control w-100" style="text-indent: 25px"
+                                   placeholder="Tìm tên bài hát">
+                        </div>
+                    </div>
+                    <div class="col-2 rounded-circle position-relative">
+                        <img class="float-end position-relative" style="width: 2rem;height: 2rem; top: 20%"
+                             src="img/image-modified.png"/>
+                    </div>
+                </div>
+            </nav>
+            <div class="container-fluid p-5">
+
+
+                <!-- Content -->
+                <div class="container d-flex justify-content-center my-4 mb-5">
+
+                    <div id="mobile-box">
+
+                        <!-- Card -->
+                        <div class="card">
+                            <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                                <img class="card-img-top" src="https://mdbootstrap.com/wp-content/uploads/2019/02/flam.jpg"
+                                     alt="Card image cap">
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                </a>
+                            </div>
+                            <div class="card-body text-center">
+
+                                <h5 class="h5 font-weight-bold"><a href="#" target="_blank">Dj Flam</a></h5>
+                                <p class="mb-0">Urban Bachata remix</p>
+
+                                <audio id="music"  autoplay controls preload="true">
+                                    <source src="source/VeQue-SaxophoneTranManhTuan_34skh.mp3" type="audio/mpeg">
+                                </audio>
+                               
+
+                            </div>
+                        </div>
+                        <!-- Card -->
+                    </div>
+                </div>
+                <!-- Content -->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
