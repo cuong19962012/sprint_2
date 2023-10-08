@@ -1,0 +1,32 @@
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn.btn-primary:active {
+    background-color: #6040ab;
+    border-color: #6040ab;
+}
+
+.spinner-border{
+    width: 100%;
+    height: 100%;
+    --bs-spinner-animation-speed: 20s;
+    --bs-spinner-border-width: 0rem;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px whitesmoke;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color:#fff;
+}
+
+.sidebar:hover{
+background-color: #170f23;
+}

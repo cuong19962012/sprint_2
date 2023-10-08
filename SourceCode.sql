@@ -6,10 +6,11 @@ CREATE TABLE `level` (
     `name` VARCHAR(255),
     `flag_deleted` BIT(1)
 );
-CREATE TABLE `user` (
+CREATE TABLE `user_app` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
-    `user_name` VARCHAR(255) UNIQUE NOT NULL,
+    `username` VARCHAR(255) UNIQUE NOT NULL,
     `password` VARCHAR(255),
+    `image` TEXT,
     `level_id` BIGINT,
     `flag_deleted` BIT(1),
     FOREIGN KEY (`level_id`)
@@ -22,25 +23,23 @@ CREATE TABLE `role` (
     `flag_deleted` BIT(1)
 );
 
-CREATE TABLE `user_role` (
+CREATE TABLE `user_app_role` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
-    `user_id` BIGINT,
+    `user_app_id` BIGINT,
     `role_id` BIGINT,
     `flag_deleted` BIT(1),
-    FOREIGN KEY (`user_id`)
-        REFERENCES `user` (`id`),
+    FOREIGN KEY (`user_app_id`)
+        REFERENCES `user_app` (`id`),
     FOREIGN KEY (`role_id`)
         REFERENCES `role` (`id`)
 );
-
-
 CREATE TABLE `album` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(255),
-    `user_id` BIGINT,
+    `user_app_id` BIGINT,
     `flag_deleted` BIT(1),
-    FOREIGN KEY (`user_id`)
-        REFERENCES `user` (`id`)
+    FOREIGN KEY (`user_app_id`)
+        REFERENCES `user_app` (`id`)
 );
 
 
@@ -60,6 +59,12 @@ CREATE TABLE `author` (
     `name` VARCHAR(255),
     `flag_deleted` BIT(1)
 );
+CREATE TABLE `quality` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `name` VARCHAR(255),
+    `flag_deleted` BIT(1)
+);
+
 
 
 CREATE TABLE `song` (
@@ -69,10 +74,23 @@ CREATE TABLE `song` (
     `link` TEXT,
     `release_date` DATE,
     `author_id` BIGINT,
+    `user_limit` BIT(1),
     `flag_deleted` BIT(1),
     FOREIGN KEY (`author_id`)
         REFERENCES `author` (`id`)
 );
+
+CREATE TABLE `song_quality` (
+    `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `song_id` BIGINT,
+    `quality_id` BIGINT,
+    `flag_deleted` BIT(1),
+    FOREIGN KEY (`song_id`)
+        REFERENCES `song` (`id`),
+    FOREIGN KEY (`quality_id`)
+        REFERENCES `quality` (`id`)
+);
+
 
 CREATE TABLE `song_type` (
     `id` BIGINT PRIMARY KEY AUTO_INCREMENT,
