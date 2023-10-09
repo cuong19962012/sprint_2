@@ -1,19 +1,19 @@
-package com.example.back_end.model;
+package com.example.back_end.model.singer;
 
 import javax.persistence.*;
 
 @Entity
-public class Author {
+public class Singer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Boolean flagDeleted;
 
-    public Author() {
+    public Singer() {
     }
 
-    public Author(Long id, String name, Boolean flagDeleted) {
+    public Singer(Long id, String name, Boolean flagDeleted) {
         this.id = id;
         this.name = name;
         this.flagDeleted = flagDeleted;

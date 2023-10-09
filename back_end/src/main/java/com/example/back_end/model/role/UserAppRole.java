@@ -1,4 +1,7 @@
-package com.example.back_end.model;
+package com.example.back_end.model.role;
+
+import com.example.back_end.model.role.Role;
+import com.example.back_end.model.user_app.UserApp;
 
 import javax.persistence.*;
 

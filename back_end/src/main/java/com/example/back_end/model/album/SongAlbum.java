@@ -1,26 +1,29 @@
-package com.example.back_end.model;
+package com.example.back_end.model.album;
+
+import com.example.back_end.model.album.Album;
+import com.example.back_end.model.song.Song;
 
 import javax.persistence.*;
 
 @Entity
-public class SongQuality {
+public class SongAlbum {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id", name = "quality_id")
-    private Quality quality;
+    @JoinColumn(referencedColumnName = "id", name = "album_id")
+    private Album album;
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", name = "song_id")
     private Song song;
     private Boolean flagDeleted;
 
-    public SongQuality() {
+    public SongAlbum() {
     }
 
-    public SongQuality(Long id, Quality quality, Song song, Boolean flagDeleted) {
+    public SongAlbum(Long id, Album album, Song song, Boolean flagDeleted) {
         this.id = id;
-        this.quality = quality;
+        this.album = album;
         this.song = song;
         this.flagDeleted = flagDeleted;
     }
@@ -33,12 +36,12 @@ public class SongQuality {
         this.id = id;
     }
 
-    public Quality getQuality() {
-        return quality;
+    public Album getAlbum() {
+        return album;
     }
 
-    public void setQuality(Quality quality) {
-        this.quality = quality;
+    public void setAlbum(Album album) {
+        this.album = album;
     }
 
     public Song getSong() {

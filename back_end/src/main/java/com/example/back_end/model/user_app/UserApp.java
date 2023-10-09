@@ -1,4 +1,7 @@
-package com.example.back_end.model;
+package com.example.back_end.model.user_app;
+
+import com.example.back_end.model.level.Level;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -8,6 +11,7 @@ public class UserApp {
     @Id
     private Long id;
     private String username;
+    @JsonIgnore
     private String password;
     @Column(columnDefinition = "TEXT")
     private String image;

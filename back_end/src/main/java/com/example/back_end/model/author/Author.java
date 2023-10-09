@@ -1,22 +1,19 @@
-package com.example.back_end.model;
+package com.example.back_end.model.author;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Role {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Author {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Boolean flagDeleted;
 
-    public Role() {
+    public Author() {
     }
 
-    public Role(Long id, String name, Boolean flagDeleted) {
+    public Author(Long id, String name, Boolean flagDeleted) {
         this.id = id;
         this.name = name;
         this.flagDeleted = flagDeleted;

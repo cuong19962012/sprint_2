@@ -1,4 +1,4 @@
-package com.example.back_end.model;
+package com.example.back_end.model.type;
 
 import javax.persistence.*;
 

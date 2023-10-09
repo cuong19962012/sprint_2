@@ -1,4 +1,4 @@
-package com.example.back_end.model;
+package com.example.back_end.model.level;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,7 @@
-package com.example.back_end.model;
+package com.example.back_end.model.singer;
+
+import com.example.back_end.model.singer.Singer;
+import com.example.back_end.model.song.Song;
 
 import javax.persistence.*;
 

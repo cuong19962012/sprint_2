@@ -1,4 +1,7 @@
 package com.example.back_end.repository.level;
 
-public interface ILevelRepository {
+import com.example.back_end.model.level.Level;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ILevelRepository extends JpaRepository<Level,Long> {
 }
