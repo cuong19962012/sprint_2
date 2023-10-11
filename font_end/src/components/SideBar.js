@@ -1,5 +1,6 @@
 import { BsFillHouseFill, BsList, BsMusicNoteList } from 'react-icons/bs';
 import Logo from '../img/Logo.png';
+import '../style/style.css';
 export function SideBar() {
     return (
         <div className="col-2 min-vh-100 position-fixed z-3 text-light px-0" style={{ backgroundColor: '#221b2e' }}>
@@ -13,8 +14,8 @@ export function SideBar() {
                         <div className="h3 float-start" style={{ fontSize: '1.3rem' }}><BsList className='mx-1' />Thể loại</div>
                     </button>
                     <ul className="dropdown-menu border-0 bg-opacity-10 bg-black">
-                        <li><a href className="dropdown-item text-light" >Nhạc trẻ</a></li>
-                        <li><a href className="dropdown-item text-light">Nhạc trẻ</a></li>
+                        <li><a href className="dropdown-item text-light sidebar" >Nhạc trẻ</a></li>
+                        <li><a href className="dropdown-item text-light sidebar">Nhạc trẻ</a></li>
                     </ul>
                 </div>
                 <div className="sidebar btn w-100 border-0 text-light ">

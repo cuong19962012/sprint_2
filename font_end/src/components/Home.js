@@ -1,5 +1,4 @@
 import CarouselImg1 from '../img/carousel1.jpg';
-import { BsFillHouseFill, BsList, BsMusicNoteList } from 'react-icons/bs';
 import { SideBar } from './SideBar'
 import { NavBar } from './NavBar';
 export function Home() {
@@ -12,7 +11,7 @@ export function Home() {
           <div className="col-10 p-0 m-0">
             <NavBar />
             <div className="container-fluid p-5">
-              <div id="carouselExample" className="carousel slide h-75">
+              <div id="carouselExample" className="carousel slide h-100">
                 <div className="carousel-inner ">
                   <div className="carousel-item active">
                     <img src={CarouselImg1} style={{ height: '100%', width: '100%' }} className="d-block rounded-5 object-fit-cover" alt="..." />

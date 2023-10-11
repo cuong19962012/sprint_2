@@ -1,16 +1,24 @@
 import { SideBar } from './SideBar'
 import { NavBar } from './NavBar';
-import { Player } from './Player';
+import { PlayWithLyrice } from './PlayerWithLyrics';
 import M from '../source/VanNho-TuanHung-4044663.mp3'
-import { BsFillHouseFill, BsList, BsMusicNoteList } from 'react-icons/bs';
+import { Lyrice } from './Lyrics';
+import { useState } from 'react';
 
 export function Detail() {
+    const [dataForLyrics, setDataForLyrics] = useState({});
+    // Function to handle data updates from the child component
+    const handleLyricsDataFromChild = (data) => {
+        setDataForLyrics(data);
+    };
     return (
         <>
             <div className="container-fluid overflow-hidden" style={{ backgroundColor: '#170f23' }}>
                 <div className="row">
 
-                    <SideBar />
+                    <SideBar
+
+                    />
                     <div className="col-2" />
                     <div className="col-10 p-0 m-0">
                         <NavBar />
@@ -22,97 +30,15 @@ export function Detail() {
                                         <h5 className="card-title text-decoration-underline text-light">Thêm một ai dư thừa</h5>
                                         <p style={{ color: '#6c757d' }}>JUUN D,Bảo Anh, ERIK, Mui Lê</p>
                                         <div className="card-body p-0 w-100">
-                                            <Player className='bg-transparent' style={{ width: '100%' }} source={M} />
+                                            <PlayWithLyrice number={3} getDataForLyrics={handleLyricsDataFromChild} source={M} className='bg-transparent' style={{ width: '100%' }} />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-4">
                                     <div className="bg-transparent text-light overflow-auto" style={{ height: '30rem' }}>
                                         <p style={{ color: '#dddddd' }}>
-                                            Giấc mộng năm ấy ta có
-                                            Nhẹ nhàng như cơn gió
-                                            Giờ đã hoá tàn tro
-                                            Anh là người em từng yêu
-                                            Tim rơi trong một chiều
-                                            Hoàng hôn thời niên thiếu
-                                            Dẫu là luôn thấy đôi mắt
-                                            Buồn làm tim đau thắt
-                                            Vẫn hoài yêu
-                                            Bao năm tháng
-                                            Cũng chẳng thể đo được hết
-                                            Nhớ thương đã trao
-                                            Ngày mà mình nằm hàng giờ
-                                            Nhìn mây bay trên trời xanh
-                                            Ngày mà một lời tỏ tình
-                                            Rơi theo mưa nhanh nhanh
-                                            Từng lần hẹn hò
-                                            Giờ lại thành ký ức vẽ lên bức tranh
-                                            Tháng năm đã qua
-                                            Đẹp như thước phim chúng ta
-                                            Hay tua chậm
-                                            Nhiều năm về sau tình cờ thấy nhau
-                                            Đôi mắt người vẫn một màu sẫm nâu
-                                            Cà phê trên tay anh đưa tay em cầm lấy
-                                            Có thể được xem như
-                                            Mình vừa cầm tay nhau
-                                            Xin lỗi vì đã chẳng thể tốt hơn
-                                            Xin lỗi chẳng thể trưởng thành sớm hơn
-                                            Anh nói điều ấy
-                                            Khi trái tim em tan nát từ lâu
-                                            Và đã phải học cách gượng cười
-                                            Chỉ tiếc
-                                            Cô ấy giờ đây
-                                            Cô ấy của anh
-                                            Chỉ tiếc
-                                            Cô ấy của anh
-                                            Không phải là em
-                                            Gió của những tháng năm ấy
-                                            Thổi qua đáy thung lũng
-                                            Tận cùng những ngày yêu
-                                            Anh là nụ hôn đầu tiên
-                                            Chỉ xuất hiện một lần
-                                            Ngỡ người thân yêu nhất
-                                            Dẫu là luôn thấy đôi mắt
-                                            Buồn làm tim đau thắt
-                                            Vẫn hoài yêu
-                                            Bao năm tháng
-                                            Cũng chẳng thể đo được hết
-                                            Nhớ thương đã trao
-                                            Ngày mà mình nằm hàng giờ
-                                            Nhìn mây bay trên trời xanh
-                                            Ngày mà một lời tỏ tình
-                                            Rơi theo mưa nhanh nhanh
-                                            Từng lần hẹn hò
-                                            Giờ lại thành ký ức vẽ lên bức tranh
-                                            Tháng năm đã qua
-                                            Đẹp như thước phim chúng ta
-                                            Hay tua chậm
-                                            Nhiều năm về sau tình cờ thấy nhau
-                                            Đôi mắt người vẫn một màu sẫm nâu
-                                            Cà phê trên tay anh đưa tay em cầm lấy
-                                            Có thể được xem
-                                            Như mình vừa cầm tay nhau
-                                            Xin lỗi vì đã chẳng thể tốt hơn
-                                            Xin lỗi chẳng thể trưởng thành sớm hơn
-                                            Anh nói điều ấy
-                                            Khi trái tim em tan nát từ lâu
-                                            Và ta đâu còn là gì của nhau
-                                            Cô ấy giờ là cô ấy của anh
-                                            Cô ấy của anh giờ không phải em
-                                            Anh vốn luôn có cô ấy cạnh bên
-                                            Chỉ là giờ đây
-                                            Em không còn được là cô ấy
-                                            Xin lỗi vì đã chẳng thể tốt hơn
-                                            Xin lỗi chẳng thể trưởng thành sớm hơn
-                                            Anh nói điều ấy
-                                            Khi trái tim em tan nát từ lâu
-                                            Và ta đâu còn là gì của nhau
-                                            Chỉ tiếc
-                                            Cô ấy giờ đây
-                                            Cô ấy của anh
-                                            Chỉ tiếc
-                                            Cô ấy của anh
-                                            Không phải là em
+                                            <Lyrice trackId={dataForLyrics.trackId}
+                                                currentTime={dataForLyrics.currentTime} />
                                         </p>
                                     </div>
                                 </div>
