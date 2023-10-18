@@ -3,6 +3,7 @@ package com.example.back_end.model.song;
 import com.example.back_end.model.author.Author;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 public class Song {
@@ -15,8 +16,10 @@ public class Song {
     @Column(columnDefinition = "TEXT")
     private String link;
     @Column(columnDefinition = "date")
-    private String releaseDate;
+    private Date releaseDate;
     private Boolean userLimit;
+    @Column(columnDefinition = "TEXT")
+    private String image;
     @ManyToOne
     @JoinColumn(referencedColumnName = "id", name = "author_id")
     private Author author;
@@ -25,13 +28,14 @@ public class Song {
     public Song() {
     }
 
-    public Song(Long id, String name, String lyric, String link, String releaseDate, Boolean userLimit, Author author, Boolean flagDeleted) {
+    public Song(Long id, String name, String lyric, String link, Date releaseDate, Boolean userLimit, String image, Author author, Boolean flagDeleted) {
         this.id = id;
         this.name = name;
         this.lyric = lyric;
         this.link = link;
         this.releaseDate = releaseDate;
         this.userLimit = userLimit;
+        this.image = image;
         this.author = author;
         this.flagDeleted = flagDeleted;
     }
@@ -68,11 +72,11 @@ public class Song {
         this.link = link;
     }
 
-    public String getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -98,5 +102,13 @@ public class Song {
 
     public void setFlagDeleted(Boolean flagDeleted) {
         this.flagDeleted = flagDeleted;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -54,4 +54,9 @@ public class UserAppService implements IUserAppService {
         userApp.setPassword(bcryptEncoder.encode(userAppDto.getPassword()));
         return userAppRepository.save(userApp);
     }
+
+    @Override
+    public UserApp findUserAppByUsername(String username) {
+        return userAppRepository.findUserAppByUsername(username);
+    }
 }

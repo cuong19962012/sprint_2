@@ -37,10 +37,14 @@ public class UserAppController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         final UserDetails userDetails = userAppService.loadUserByUsername(authenticationRequest.getUsername());
+        UserApp userApp = userAppService.findUserAppByUsername(userDetails.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return new ResponseEntity<>(new JwtResponse(token), HttpStatus.OK);
+        return new ResponseEntity<>(new JwtResponse(token, userApp), HttpStatus.OK);
     }
-
+//    @DeleteMapping("/logout")
+//    public ResponseEntity<?> logoutUserApp(){
+//
+//    }
     private void authenticate(String username, String password) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));

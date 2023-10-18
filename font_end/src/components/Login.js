@@ -17,6 +17,8 @@ export function Login() {
         try {
             const result = await UserAppService.login(appUser);
             localStorage.setItem("token", result.data.token);
+            localStorage.setItem("username", result.data.userApp.username);
+            localStorage.setItem("image", result.data.userApp.image);
             navigate("/home");
         } catch (e) {
             setMessageError("Tài khoản hoặc mật khẩu không đúng");
@@ -43,7 +45,7 @@ export function Login() {
                                     <label htmlFor="password" className="form-label" style={{ color: '#6040ab' }}>Mật khẩu</label>
                                     <input type="password" onFocus={() => resetMesseage()} className="form-control" id="password" />
                                 </div>
-                                <div className="mb-2 text-danger" style={{ height: '2rem',fontSize:'0.93rem'}}>
+                                <div className="mb-2 text-danger" style={{ height: '2rem', fontSize: '0.93rem' }}>
                                     {messageError ? messageError : ""}
                                 </div>
                                 <button type="submit" className="btn btn-primary">Đăng nhập</button>

@@ -39,3 +39,26 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+#gsearch:focus {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#gsearch {
+    background-color: #221b2e;
+    color: #ffffff;
+}
+
+#gsearch::placeholder {
+    color: #ffffff;
+
+}
+
+.itemSearchBox:hover {
+    background-color: gray;
+}
+
+.user-item:hover {
+    background-color: #170f23;
+}

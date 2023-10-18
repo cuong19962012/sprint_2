@@ -28,6 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
+    @Autowired
+    private TokenManager tokenManager;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -36,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Use BCryptPasswordEncoder
         auth.userDetailsService(jwtUserDetailsService).passwordEncoder(passwordEncoder());
     }
+
 
     @Bean
     public static PasswordEncoder passwordEncoder() {
@@ -53,7 +56,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // We don't need CSRF for this example
         httpSecurity.csrf().disable()
                 // dont authenticate this particular request
-                .authorizeRequests().antMatchers("/authenticate", "/register").permitAll()
+                .authorizeRequests().antMatchers("/authenticate",
+                        "/register",
+                        "/api/song/**",
+                        "/api/author/**"
+                )
+                .permitAll()
                 .antMatchers("/hello").hasAuthority("admin")
 
 
