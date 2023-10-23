@@ -21,14 +21,16 @@ export function PlayWithLyrice(props) {
   }, [currentTime]);
 
   const handleTimeUpdate = () => {
-    setCurrentTime(audioRef.current.audio.current.currentTime);
+    setCurrentTime(audioRef.current?.audio.current.currentTime);
   };
   return (
     <AudioPlayer
       onListen={() => handleTimeUpdate()}
+      onPlay={() => props.handlePlaying()}
+      onPause={() => props.handleStopped()}
       ref={audioRef}
       autoPlay
-      className='bg-transparent border-0 shadow-none sticky-bottom'
+      className='bg-transparent border-0 shadow-none'
       src={props.source}
     // other props here
     />

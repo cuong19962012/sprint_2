@@ -1,6 +1,7 @@
 package com.example.back_end.controller.user_app;
 
 import com.example.back_end.config.user_app.JwtTokenUtil;
+import com.example.back_end.config.user_app.TokenManager;
 import com.example.back_end.model.user_app.JwtRequest;
 import com.example.back_end.model.user_app.JwtResponse;
 import com.example.back_end.model.user_app.UserApp;
@@ -13,6 +14,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,12 +28,11 @@ public class UserAppController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Autowired
-    IUserAppService userAppService;
+    private IUserAppService userAppService;
 
 
     @PostMapping("/register")
     public ResponseEntity<UserApp> saveUserApp(@RequestBody UserAppDto userAppDto) throws Exception {
-        System.out.println(userAppDto);
         return new ResponseEntity<>(userAppService.save(userAppDto), HttpStatus.OK);
     }
 
@@ -41,10 +44,8 @@ public class UserAppController {
         final String token = jwtTokenUtil.generateToken(userDetails);
         return new ResponseEntity<>(new JwtResponse(token, userApp), HttpStatus.OK);
     }
-//    @DeleteMapping("/logout")
-//    public ResponseEntity<?> logoutUserApp(){
-//
-//    }
+
+
     private void authenticate(String username, String password) throws Exception {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));

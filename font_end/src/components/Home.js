@@ -15,8 +15,8 @@ export function Home() {
   }, [searchKeyWord, pageNumber]);
   const searchSong = async () => {
     const result = await SongService.searchSong(searchKeyWord, pageNumber);
-    setListSearched(result.content);
-    setTotalPages(result.totalPages);
+    setListSearched(result?.content);
+    setTotalPages(result?.totalPages);
   };
   const handleSearchKeyWord = (searchValue) => {
     setSearchKeyWord(searchValue);

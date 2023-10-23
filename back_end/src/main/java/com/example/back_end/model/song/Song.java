@@ -11,8 +11,6 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Column(columnDefinition = "LONGTEXT")
-    private String lyric;
     @Column(columnDefinition = "TEXT")
     private String link;
     @Column(columnDefinition = "date")
@@ -28,10 +26,9 @@ public class Song {
     public Song() {
     }
 
-    public Song(Long id, String name, String lyric, String link, Date releaseDate, Boolean userLimit, String image, Author author, Boolean flagDeleted) {
+    public Song(Long id, String name, String link, Date releaseDate, Boolean userLimit, String image, Author author, Boolean flagDeleted) {
         this.id = id;
         this.name = name;
-        this.lyric = lyric;
         this.link = link;
         this.releaseDate = releaseDate;
         this.userLimit = userLimit;
@@ -54,14 +51,6 @@ public class Song {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLyric() {
-        return lyric;
-    }
-
-    public void setLyric(String lyric) {
-        this.lyric = lyric;
     }
 
     public String getLink() {

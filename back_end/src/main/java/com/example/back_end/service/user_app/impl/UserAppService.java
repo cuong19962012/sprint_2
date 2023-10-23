@@ -57,6 +57,6 @@ public class UserAppService implements IUserAppService {
 
     @Override
     public UserApp findUserAppByUsername(String username) {
-        return userAppRepository.findUserAppByUsername(username);
+        return userAppRepository.findByUsername(username);
     }
 }

@@ -1,6 +1,5 @@
 package com.example.back_end.model.album;
 
-import com.example.back_end.model.album.Album;
 import com.example.back_end.model.song.Song;
 
 import javax.persistence.*;

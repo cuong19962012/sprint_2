@@ -1,6 +1,6 @@
-.btn-primary,
-.btn-primary:hover,
-.btn-primary:focus,
+.btn.btn-primary,
+.btn.btn-primary:hover,
+.btn.btn-primary:focus,
 .btn.btn-primary:active {
     background-color: #6040ab;
     border-color: #6040ab;
@@ -61,4 +61,25 @@
 
 .user-item:hover {
     background-color: #170f23;
+}
+
+.sticky-bottom {
+    /* z-index: 1; */
+}
+
+.footer-player {
+    position: fixed;
+    bottom: 0;
+    width: inherit;
+}
+
+.player-detail {
+
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+}
+
+.item-album:hover {
+    background-color: #6040ab;
 }

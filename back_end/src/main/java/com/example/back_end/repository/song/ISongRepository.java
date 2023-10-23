@@ -32,7 +32,8 @@ public interface ISongRepository extends JpaRepository<Song, Long> {
 
     @Query(value = "select so.id as id \n" +
             ", so.name as name \n" +
-            ", so.release_date as releaseDate \n" +
+            ", so.release_date as releaseDate " +
+            ", so.link\n" +
             ", so.user_limit as userLimit \n" +
             ", so.image as image \n" +
             ", group_concat(s.name) as singerName \n" +

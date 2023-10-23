@@ -1,21 +1,22 @@
-package com.example.back_end.model.quality;
+package com.example.back_end.model.level;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 @Entity
-public class Quality {
+public class Rate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
     private String name;
     private Boolean flagDeleted;
 
-    public Quality() {
+    public Rate() {
     }
 
-    public Quality(Long id, String name, Boolean flagDeleted) {
+    public Rate(Long id, String name, Boolean flagDeleted) {
         this.id = id;
         this.name = name;
         this.flagDeleted = flagDeleted;

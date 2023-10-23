@@ -6,6 +6,7 @@ public interface SongProjection {
     Long getId();
 
     String getName();
+    String getLink();
 
     Date getReleaseDate();
 

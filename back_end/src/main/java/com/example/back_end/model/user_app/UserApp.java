@@ -1,6 +1,6 @@
 package com.example.back_end.model.user_app;
 
-import com.example.back_end.model.level.Level;
+import com.example.back_end.model.level.Rate;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -16,19 +16,19 @@ public class UserApp {
     @Column(columnDefinition = "TEXT")
     private String image;
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id", name = "level_id")
-    private Level level;
+    @JoinColumn(referencedColumnName = "id", name = "rate_id")
+    private Rate rate;
     private Boolean flagDeleted;
 
     public UserApp() {
     }
 
-    public UserApp(Long id, String username, String password, String image, Level level, Boolean flagDeleted) {
+    public UserApp(Long id, String username, String password, String image, Rate rate, Boolean flagDeleted) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.image = image;
-        this.level = level;
+        this.rate = rate;
         this.flagDeleted = flagDeleted;
     }
 
@@ -64,12 +64,12 @@ public class UserApp {
         this.image = image;
     }
 
-    public Level getLevel() {
-        return level;
+    public Rate getRate() {
+        return rate;
     }
 
-    public void setLevel(Level level) {
-        this.level = level;
+    public void setRate(Rate rate) {
+        this.rate = rate;
     }
 
     public Boolean getFlagDeleted() {

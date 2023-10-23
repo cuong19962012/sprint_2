@@ -4,10 +4,11 @@ import { BsSearch, BsMusicNote, BsPersonLinesFill, BsPersonBoundingBox, BsDoorOp
 import { useEffect } from 'react';
 import * as SongService from '../services/SongService';
 import * as AuthorService from '../services/AuthorService';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 export function NavBar({ handleSearchKeyWord, handlePageNumber }) {
     const [searchBox, setSearchBox] = useState(false);
     const [listSongBySearch, setListSongBySearch] = useState([]);
+    const navigate = useNavigate();
     const [userApp, setUserApp] = useState({
         username: "",
         image: ""
@@ -21,7 +22,7 @@ export function NavBar({ handleSearchKeyWord, handlePageNumber }) {
             }
         );
 
-    }, [userApp]);
+    }, [userApp.username]);
     const getListSongBySearch = async (searchKeyWord) => {
         const result = await SongService.getListSongBySearch(searchKeyWord);
         setListSongBySearch(result);
@@ -36,7 +37,7 @@ export function NavBar({ handleSearchKeyWord, handlePageNumber }) {
         setSearchBox(true);
     };
     const hiddenSearchBox = () => {
-        setSearchBox(false);
+        setTimeout(()=>setSearchBox(false),300);
     };
     const handleKeyPress = (event) => {
         if (event.key === 'Enter' && event.target.value !== "") {
@@ -53,6 +54,9 @@ export function NavBar({ handleSearchKeyWord, handlePageNumber }) {
             image: ""
         });
     }
+    const handleNavigateBySong = (songId) => {
+        navigate(`/song/${songId}`);
+    };
     return (
         <nav className="navbar sticky-top" style={{ backgroundColor: '#170f23' }}>
             <div className="row w-100">
@@ -71,7 +75,7 @@ export function NavBar({ handleSearchKeyWord, handlePageNumber }) {
 
                                     {
                                         listSongBySearch?.map(item => (
-                                            <div className='itemSearchBox rounded'>
+                                            <div onClick={()=>handleNavigateBySong(item.id)} style={{ cursor: 'pointer' }} className='itemSearchBox rounded '>
                                                 <BsMusicNote />{item.name}
                                             </div>
                                         ))
@@ -114,7 +118,7 @@ export function NavBar({ handleSearchKeyWord, handlePageNumber }) {
 
                             </>
                             : <div className='text-light float-end position-relative btn'>
-                                <NavLink style={{textDecoration:'none'}} to={"/login"}>Đăng nhập</NavLink>
+                                <NavLink style={{ textDecoration: 'none' }} to={"/login"}>Đăng nhập</NavLink>
                             </div>
                     }
                 </div>
