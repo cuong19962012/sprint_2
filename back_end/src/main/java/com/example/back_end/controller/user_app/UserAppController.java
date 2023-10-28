@@ -14,9 +14,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +42,23 @@ public class UserAppController {
         return new ResponseEntity<>(new JwtResponse(token, userApp), HttpStatus.OK);
     }
 
+    @GetMapping("/api/user-app")
+    public ResponseEntity<?> getUserAppById(@RequestParam(defaultValue = "") String username) {
+        UserApp userApp = userAppService.findUserAppByUsername(username);
+        if (userApp == null)
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(userApp, HttpStatus.OK);
+    }
+
+    @PatchMapping("/api/user-app/upgrade/{username}")
+    public ResponseEntity<?> upgradeForUserApp(@PathVariable String username) {
+        try {
+            userAppService.upgradeVipForUserApp(username);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     private void authenticate(String username, String password) throws Exception {
         try {
@@ -55,4 +69,6 @@ public class UserAppController {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
     }
+
+
 }

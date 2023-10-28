@@ -19,6 +19,7 @@ export function Login() {
             localStorage.setItem("token", result.data.token);
             localStorage.setItem("username", result.data.userApp.username);
             localStorage.setItem("image", result.data.userApp.image);
+            localStorage.setItem("rate", result.data.userApp.rate.name);
             navigate("/home");
         } catch (e) {
             setMessageError("Tài khoản hoặc mật khẩu không đúng");

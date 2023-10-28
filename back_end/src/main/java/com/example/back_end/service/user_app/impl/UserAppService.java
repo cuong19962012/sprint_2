@@ -9,6 +9,7 @@ import com.example.back_end.service.user_app.IUserAppService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,7 +32,7 @@ public class UserAppService implements IUserAppService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserApp userApp = userAppRepository.findByUsername(username);
+        UserApp userApp = userAppRepository.findByUsername(username).get();
         if (userApp == null)
             throw new UsernameNotFoundException("User not found with username: " + username);
 
@@ -57,6 +58,14 @@ public class UserAppService implements IUserAppService {
 
     @Override
     public UserApp findUserAppByUsername(String username) {
-        return userAppRepository.findByUsername(username);
+        Optional<UserApp> userApp = userAppRepository.findByUsername(username);
+        if (!userApp.isPresent())
+            return null;
+        return userAppRepository.findByUsername(username).get();
+    }
+
+    @Override
+    public void upgradeVipForUserApp(String username) {
+        userAppRepository.upgradeVipForUserApp(username);
     }
 }

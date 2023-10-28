@@ -23,15 +23,15 @@ export function SideBar() {
                         <div className="h3 float-start" style={{ fontSize: '1.3rem' }}><BsFillHouseFill className='mx-1' />Trang chủ</div>
                     </div>
                 </Link>
-                <div className="btn-group dropend sidebar w-100 text-light" style={{ zIndex: "1000000" }}>
-                    <button className="btn btn-primary bg-transparent border-0" type="button" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div className="btn-group dropend sidebar w-100 text-light">
+                    <button className="btn btn-primary bg-transparent border-0" type="button"  data-bs-toggle="dropdown">
                         <div className="h3 float-start" style={{ fontSize: '1.3rem' }}><BsList className='mx-1' />Thể loại</div>
                     </button>
                     <ul className="dropdown-menu border-0 bg-opacity-10 bg-black z-3" >
 
                         {
                             listType?.map(item => (
-                                <li key={item?.id} className='z-3'><a href className="dropdown-item text-light sidebar btn z-3"  >{item?.name}</a></li>
+                                <li key={item?.id} className='z-3'><a className="dropdown-item text-light sidebar btn"  >{item?.name}</a></li>
                             ))
                         }
 

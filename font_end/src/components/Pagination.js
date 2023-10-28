@@ -1,5 +1,4 @@
 export function Pagination({ totalPages, pageNumber, handlePageNumber }) {
-    console.log(pageNumber);
     let item = [];
     for (let i = 0; i < totalPages; i++) {
         if (i === pageNumber)

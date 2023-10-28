@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlbumService implements IAlbumService {
@@ -23,8 +24,8 @@ public class AlbumService implements IAlbumService {
 
     @Override
     public List<AlbumProject> getListAlbum(String username) {
-        UserApp userApp = userAppRepository.findByUsername(username);
-        return albumRepository.getListAlbum(userApp.getId());
+       Optional<UserApp>  userApp = userAppRepository.findByUsername(username);
+        return albumRepository.getListAlbum(userApp.get().getId());
     }
 
     @Override
@@ -32,7 +33,7 @@ public class AlbumService implements IAlbumService {
         Album album = new Album();
         BeanUtils.copyProperties(albumDto, album);
         album.setFlagDeleted(false);
-        album.setUser(userAppRepository.findByUsername(albumDto.getUsername()));
+        album.setUser(userAppRepository.findByUsername(albumDto.getUsername()).get());
         return albumRepository.save(album);
     }
 
@@ -41,7 +42,7 @@ public class AlbumService implements IAlbumService {
         Album album = new Album();
         BeanUtils.copyProperties(albumDto, album);
         album.setFlagDeleted(false);
-        album.setUser(userAppRepository.findByUsername(albumDto.getUsername()));
+        album.setUser(userAppRepository.findByUsername(albumDto.getUsername()).get());
         return albumRepository.save(album);
     }
 

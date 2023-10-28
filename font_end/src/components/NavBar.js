@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import Account from '../img/account.png';
-import { BsSearch, BsMusicNote, BsPersonLinesFill, BsPersonBoundingBox, BsDoorOpen } from 'react-icons/bs';
+import { BsSearch, BsMusicNote, BsPersonLinesFill, BsPersonFillUp, BsPersonBoundingBox, BsDoorOpen } from 'react-icons/bs';
 import { useEffect } from 'react';
 import * as SongService from '../services/SongService';
 import * as AuthorService from '../services/AuthorService';
+import * as UserAppService from '../services/UserAppService';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-export function NavBar({ handleSearchKeyWord, handlePageNumber }) {
+import { ToastContainer, toast } from 'react-toastify';
+import { Button, Modal } from 'react-bootstrap';
+import Swal from 'sweetalert2';
+export function NavBar() {
     const [searchBox, setSearchBox] = useState(false);
     const [listSongBySearch, setListSongBySearch] = useState([]);
     const navigate = useNavigate();
@@ -13,6 +17,12 @@ export function NavBar({ handleSearchKeyWord, handlePageNumber }) {
         username: "",
         image: ""
     });
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const [listAuthorBySearch, setListAuthorBySearch] = useState([]);
     useEffect(() => {
         setUserApp(
@@ -37,26 +47,91 @@ export function NavBar({ handleSearchKeyWord, handlePageNumber }) {
         setSearchBox(true);
     };
     const hiddenSearchBox = () => {
-        setTimeout(()=>setSearchBox(false),300);
+        setTimeout(() => setSearchBox(false), 300);
     };
     const handleKeyPress = (event) => {
         if (event.key === 'Enter' && event.target.value !== "") {
-            handleSearchKeyWord(event.target.value);
-            handlePageNumber(0);
+            navigate(`/song/search/${event.target.value}`);
+
         }
     };
     const handleLogout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("username");
         localStorage.removeItem("image");
+        localStorage.removeItem("rate");
         setUserApp({
             username: "",
             image: ""
         });
+        navigate("/login");
     }
-    const handleNavigateBySong = (songId) => {
-        navigate(`/song/${songId}`);
+    const handleNavigateBySong = (song) => {
+        if (song.userLimit) {
+            if (window.localStorage.getItem('rate') == 'vip') {
+                navigate(`/song/${song.id}`);
+            } else {
+                handleWarning();
+            }
+        } else {
+            navigate(`/song/${song.id}`);
+        }
+
     };
+    const handleWarning = () => {
+        toast("Nâng lên Vip để nghe");
+    };
+
+
+    const renderPaypal = (values) => {
+        window.paypal
+            .Buttons({
+                createOrder: (data, action, error) => {
+
+                    const total = parseFloat(values);
+                    return action.order.create({
+                        intent: "CAPTURE",
+                        purchase_units: [{
+                            description: "",
+                            amount: {
+                                currency_code: "USD",
+                                value: total.toFixed(2),
+                            },
+                        }],
+                    });
+                },
+                onApprove: async (data, actions) => {
+                    await actions.order.capture();
+                    // after we're done with paypal
+                    UserAppService.upgradeForUserApp(window.localStorage.getItem('username'));
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Đã nâng cấp thành công',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    window.localStorage.removeItem('rate');
+                    window.localStorage.setItem('rate','vip');
+                    navigate("/home");
+                    handleClose();
+
+                },
+                onError: (err) => {
+                    console.log(err);
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Nâng cấp thất bại',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    // Swal.fire("Payment failed! Please try again!", "", "error").then();
+                }
+            }).render('#paypal-button-container');
+
+    };
+
     return (
         <nav className="navbar sticky-top" style={{ backgroundColor: '#170f23' }}>
             <div className="row w-100">
@@ -75,8 +150,12 @@ export function NavBar({ handleSearchKeyWord, handlePageNumber }) {
 
                                     {
                                         listSongBySearch?.map(item => (
-                                            <div onClick={()=>handleNavigateBySong(item.id)} style={{ cursor: 'pointer' }} className='itemSearchBox rounded '>
+                                            <div onClick={() => handleNavigateBySong(item)} style={{ cursor: 'pointer' }} className='itemSearchBox rounded'>
                                                 <BsMusicNote />{item.name}
+                                                {
+                                                    item.userLimit ?
+                                                        window.localStorage?.getItem('rate') != 'vip' ? (< div className='float-end'><span class="badge text-bg-danger align-text-top">Vip</span></div>) : "" : ""
+                                                }
                                             </div>
                                         ))
                                     }
@@ -113,6 +192,7 @@ export function NavBar({ handleSearchKeyWord, handlePageNumber }) {
                                     <li className='fw-bold text-center text-light fs-6'>{userApp.username}</li>
                                     <li><hr className="dropdown-divider " /></li>
                                     <li className='text-light mb-2 btn user-item w-100'><BsPersonBoundingBox /> Sửa ảnh đại diện</li>
+                                    <li className='text-light mb-2 btn user-item w-100' onClick={() => handleShow()}><BsPersonFillUp /> Nâng vip</li>
                                     <li onClick={() => handleLogout()} className='text-light btn user-item w-100'><BsDoorOpen /> Đăng xuất</li>
                                 </ul>
 
@@ -123,6 +203,19 @@ export function NavBar({ handleSearchKeyWord, handlePageNumber }) {
                     }
                 </div>
             </div>
+            <Modal onEntered={() => renderPaypal(1)} show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Thanh toán paypal</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div id='paypal-button-container'></div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Đóng
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </nav>
     );
 }

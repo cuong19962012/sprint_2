@@ -59,12 +59,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/register",
                         "/api/song/**",
                         "/api/author/**",
-                        "/api/type/**",
-                        "/api/**"
+                        "/api/type/**"
                 )
                 .permitAll()
                 .antMatchers("/hello").hasAuthority("admin")
                 .antMatchers("/api/album/**").hasAnyAuthority("admin", "customer")
+                .antMatchers("/api/user-app/**").hasAnyAuthority("admin", "customer")
+                .antMatchers("/api/song-album/**").hasAnyAuthority("admin", "customer")
 
 
                 // all other requests need to be authenticated
